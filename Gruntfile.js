@@ -25,7 +25,7 @@ module.exports = function (grunt) {
       production: '/api/'
     },
     site: {
-      development: 'http://0.0.0.0:9000',
+      development: 'http://0.0.0.0:3000',
       production: ''
     },
     host: '0.0.0.0'
@@ -45,7 +45,8 @@ module.exports = function (grunt) {
             '<%= yeoman.app %>/modules/**/*.js',
             '<%= yeoman.app %>/modules/**/**/*.js',
             '<%= yeoman.app %>/modules/*/views/*.html',
-            '<%= yeoman.app %>/modules/*/views/**/*.html'
+            '<%= yeoman.app %>/modules/*/views/**/*.html',
+            "!<%= yeoman.app %>/modules/**/*.spec.js"
           ]
         }
       }
@@ -67,8 +68,8 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '!<%= yeoman.app %>/modules/**/tests/**',
-          '<%= yeoman.app %>/modules/**/{,*/}*.js'
+          '<%= yeoman.app %>/modules/**/{,*/}*.js',
+          "!<%= yeoman.app %>/modules/**/*.spec.js"
         ],
         tasks: ['newer:jshint:all'],
         options: {
@@ -76,7 +77,7 @@ module.exports = function (grunt) {
         }
       },
       jsTest: {
-        files: ['<%= yeoman.test %>/spec/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/modules/**/*.spec.js'],
         tasks: [
           'newer:jshint:test',
           'karma'
@@ -147,7 +148,7 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 3000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '<%= yeoman.host %>',
         livereload: 35729
@@ -207,7 +208,10 @@ module.exports = function (grunt) {
         options: {
           jshintrc: '<%= yeoman.test %>/.jshintrc'
         },
-        src: ['<%= yeoman.test %>/spec/{,*/}*.js']
+        src: [
+          '<%= yeoman.test %>/spec/{,*/}*.js',
+          "<%= yeoman.app %>/modules/**/*.spec.js"
+        ]
       }
     },
 
@@ -423,7 +427,8 @@ module.exports = function (grunt) {
               '*.js',
               '!lb-services.js',
               '!config.js',
-              '!oldieshim.js'
+              '!oldieshim.js',
+              "!*.spec.js"
             ],
             dest: '.tmp/concat/scripts'
           }
@@ -513,9 +518,23 @@ module.exports = function (grunt) {
 
     // Test settings
     karma: {
-      unit: {
-        configFile: '<%= yeoman.test %>/karma.conf.js',
-        singleRun: true
+      "unit": {
+        "configFile": "<%= yeoman.test %>/../test/karma-unit.conf.js",
+        "autoWatch": true,
+        singleRun: false
+      },
+      "unit_once": {
+        "configFile": "<%= yeoman.test %>/../test/karma-unit.conf.js",
+        "autoWatch": false,
+        "singleRun": true
+      },
+      "e2e": {
+        "configFile": "<%= yeoman.test %>/../test/karma-e2e.conf.js"
+      },
+      "e2e_once": {
+        "configFile": "<%= yeoman.test %>/../test/karma-e2e.conf.js",
+        "autoWatch": false,
+        "singleRun": true
       }
     },
     loopback_sdk_angular: {
@@ -559,7 +578,10 @@ module.exports = function (grunt) {
             {
               id: 'loopbackApp',
               title: 'LoopBack Services',
-              scripts: ['<%= yeoman.app %>/modules/**/{,*/}*.js']
+              scripts: [
+                "!<%= yeoman.app %>/modules/**/*.spec.js",
+                '<%= yeoman.app %>/modules/**/{,*/}*.js'
+              ]
             }
           ]
         },
@@ -580,8 +602,9 @@ module.exports = function (grunt) {
     "jsbeautifier" : {
       "default": {
         src: [
-          "client/app/js/app.js",
-          "client/app/modules/**/*.js",
+          "<%= yeoman.app %>/app/js/app.js",
+          "<%= yeoman.app %>/app/modules/**/*.js",
+          "!*.spec.js",
           "common/**/*.js",
           "server/**/*.js"
         ],
@@ -618,6 +641,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
+      'connect:test',               // Added for live unit testing
       'watch'
     ]);
   });
@@ -680,7 +704,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('gettext', [
     'nggettext_extract',
-    'nggettext_compile',
+    'nggettext_compile'
   ]);
 
   grunt.registerTask('includesource', [

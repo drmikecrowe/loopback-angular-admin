@@ -21,3 +21,4 @@ client/coverage
 .config
 .npm
 .db/*
+client/test/coverage

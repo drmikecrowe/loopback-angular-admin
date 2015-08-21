@@ -1,12 +1,9 @@
-// Karma configuration
-// http://karma-runner.github.io/0.12/config/configuration-file.html
-// Generated on 2014-07-30 using
-// generator-karma 0.8.3
+/**
+ * Created by mcrowe on 5/4/15.
+ */
 
-module.exports = function (config) {
-  'use strict';
-
-  config.set ({
+module.exports = function() {
+  return {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -54,14 +51,11 @@ module.exports = function (config) {
       'app/bower_components/angular-ui-grid/ui-grid.js',
       'app/bower_components/angular-loading-bar/build/loading-bar.js',
       'app/bower_components/Faker/build/build/faker.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/js/*.js',
-      'app/modules/**/*.js',
-      'test/**/*.js'
+      'app/bower_components/showdown/compressed/Showdown.min.js'
     ],
 
     // list of files / patterns to exclude
-    exclude: [],
+    exclude: ['app/bower_components'],
 
     // web server port
     port: 8080,
@@ -82,7 +76,8 @@ module.exports = function (config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-jasmine-html-reporter-livereload'
     ],
     preprocessors: {
       'app/modules/**/controllers/*.js': 'coverage',
@@ -91,14 +86,22 @@ module.exports = function (config) {
     }
     ,
     reporters: [
-      'progress',
-      'coverage'
+      'coverage',
+      'html'
     ],
     // tell karma how you want the coverage results
     coverageReporter: {
       type: 'html',
       // where to store the report
-      dir: 'coverage/'
+      dir: 'test/coverage/'
+    },
+    htmlReporter: {
+      outputDir: 'test/html', // where to put the reports
+      templatePath: null, // set if you moved jasmine_template.html
+      focusOnFailures: true, // reports show failures on start
+      namedFiles: false, // name files instead of creating sub-directories
+      pageTitle: null, // page title for reports; browser info by default
+      urlFriendlyName: false // simply replaces spaces with _ for files/dirs
     },
 
     // Continuous Integration mode
@@ -107,15 +110,11 @@ module.exports = function (config) {
 
     colors: true,
 
-    // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO
-
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
     //   '/': 'http://localhost:9000/'
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
-  });
+  };
 };

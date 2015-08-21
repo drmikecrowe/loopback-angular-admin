@@ -7,7 +7,6 @@ api:
   command: npm run dev
   volumes:
     - .:/home/strongloop
-  user: 1000
   environment:
     - NODE_ENV=development
     - DEBUG=boot*
@@ -25,7 +24,6 @@ angular:
   links:
     - mongodb
     - api
-  user: 1000
   command: grunt serve
   environment:
     - NODE_ENV=development
@@ -40,7 +38,7 @@ mongodb:
   ports:
     - "27017:27017"
   volumes:
-# Swap these two lines to have mongodb write to your /var/lib/mongodb (and comment out user: 1000)
+# Swap these two lines to have mongodb write to your /var/lib/mongodb (and comment out user: docker)
 #    - /var/lib/mongodb:/data
      - .db:/data/db
   restart: always
