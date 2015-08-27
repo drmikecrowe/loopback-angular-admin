@@ -12,20 +12,7 @@
  * @requires gettextCatalog
  **/
 angular.module('com.module.core')
-  .controller('MainCtrl', function($scope, $rootScope, $state, $location,
-    CoreService, User, gettextCatalog) {
-
-
-    $scope.currentUser = User.getCurrent();
-
-    $scope.menuoptions = $rootScope.menu;
-
-    $scope.logout = function() {
-      User.logout(function() {
-        $state.go('login');
-        CoreService.toastSuccess(gettextCatalog.getString('Logged out'),
-          gettextCatalog.getString('You are logged out!'));
-      });
-    };
+  .controller('MainCtrl', function ($scope, $rootScope, $state, $location, crAcl,
+                                    CoreService, User, AppAuth, gettextCatalog, $localStorage) {
 
   });

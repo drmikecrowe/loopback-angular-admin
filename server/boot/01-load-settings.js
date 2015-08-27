@@ -3,7 +3,7 @@
 // to enable these logs set `DEBUG=boot:01-load-settings` or `DEBUG=boot:*`
 var log = require('debug')('boot:01-load-settings');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   var Setting = app.models.Setting;
 
@@ -11,45 +11,46 @@ module.exports = function(app) {
     console.error('Creating default settings');
 
     var settings = [{
-      type: 'string',
-      key: 'appName',
+      type:  'string',
+      key:   'appName',
       value: 'Loopback Admin'
     }, {
-      type: 'select',
-      key: 'appTheme',
-      value: 'skin-blue',
+      type:    'select',
+      key:     'appTheme',
+      value:   'skin-blue-light',
       options: [
         'skin-blue',
+        'skin-blue-light',
         'skin-black'
       ]
     }, {
-      type: 'select',
-      key: 'appLayout',
-      value: 'fixed',
+      type:    'select',
+      key:     'appLayout',
+      value:   'fixed',
       options: [
         'skin-blue',
         'not-fixed'
       ]
     }, {
-      type: 'string',
-      key: 'formLayout',
+      type:  'string',
+      key:   'formLayout',
       value: 'horizontal'
     }, {
-      type: 'int',
-      key: 'formLabelSize',
+      type:  'int',
+      key:   'formLabelSize',
       value: 3
     }, {
-      type: 'int',
-      key: 'formInputSize',
+      type:  'int',
+      key:   'formInputSize',
       value: 9
     }, {
-      type: 'boolean',
-      key: 'com.module.users.enable_registration',
+      type:  'boolean',
+      key:   'com.module.users.enable_registration',
       value: true
     }];
 
-    settings.forEach(function(setting) {
-      Setting.create(setting, function(err) {
+    settings.forEach(function (setting) {
+      Setting.create(setting, function (err) {
         if (err) {
           console.error(err);
         }
@@ -60,13 +61,13 @@ module.exports = function(app) {
   function loadExistingSettings() {
     console.error('Loading existing settings');
 
-    Setting.find(function(data) {
+    Setting.find(function (data) {
       log(data);
     });
   }
 
 
-  Setting.count(function(err, result) {
+  Setting.count(function (err, result) {
     if (err) {
       console.error(err);
     }

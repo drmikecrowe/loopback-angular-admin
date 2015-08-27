@@ -9,102 +9,106 @@
  * Contrller for Login Page
  **/
 angular.module('com.module.users')
-  .controller('LoginCtrl', function($scope, $routeParams, $location,
-    CoreService, User, AppAuth, AuthProvider, gettextCatalog) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $routeParams, $location,
+                                     CoreService, User, AppAuth, AuthProvider, gettextCatalog, crAcl, $localStorage) {
 
     var TWO_WEEKS = 1000 * 60 * 60 * 24 * 7 * 2;
 
+    $scope.$storage = $localStorage;
+
+    if ($scope.$storage.currentUser) {
+      $rootScope.setupUser($localStorage.currentUser);
+      console.log('Redirect to app');
+      $state.go('app');
+    }
+
     $scope.credentials = {
-      ttl: TWO_WEEKS,
+      ttl:        TWO_WEEKS,
       rememberMe: true
     };
 
-    if (CoreService.env.name === 'development') {
-      $scope.credentials.email = 'admin@admin.com';
+    if (CoreService.env.name === 'dev') {
+      $scope.credentials.email    = 'admin@admin.com';
       $scope.credentials.password = 'admin';
     }
 
     $scope.schema = [{
-      label: '',
-      property: 'email',
+      label:       '',
+      property:    'email',
       placeholder: gettextCatalog.getString('Email'),
-      type: 'email',
-      attr: {
-        required: true,
+      type:        'email',
+      attr:        {
+        required:    true,
         ngMinlength: 4
       },
-      msgs: {
+      msgs:        {
         required: gettextCatalog.getString('You need an email address'),
-        email: gettextCatalog.getString('Email address needs to be valid'),
-        valid: gettextCatalog.getString('Nice email address!')
+        email:    gettextCatalog.getString('Email address needs to be valid'),
+        valid:    gettextCatalog.getString('Nice email address!')
       }
     }, {
-      label: '',
-      property: 'password',
+      label:       '',
+      property:    'password',
       placehodler: gettextCatalog.getString('Password'),
-      type: 'password',
-      attr: {
+      type:        'password',
+      attr:        {
         required: true
       }
     }, {
       property: 'rememberMe',
-      label: gettextCatalog.getString('Stay signed in'),
-      type: 'checkbox'
+      label:    gettextCatalog.getString('Stay signed in'),
+      type:     'checkbox'
     }];
 
     $scope.options = {
       validation: {
-        enabled: true,
+        enabled:      true,
         showMessages: false
       },
-      layout: {
-        type: 'basic',
+      layout:     {
+        type:      'basic',
         labelSize: 3,
         inputSize: 9
       }
     };
 
-    $scope.socialLogin = function(provider) {
+    $scope.socialLogin = function (provider) {
       window.location = CoreService.env.siteUrl + provider.authPath;
     };
 
-    AuthProvider.count(function(result) {
+    AuthProvider.count(function (result) {
       if (result.count > 0) {
-        AuthProvider.find(function(result) {
+        AuthProvider.find(function (result) {
           $scope.authProviders = result;
         });
       }
     });
 
-    $scope.login = function() {
-
+    $scope.login = function () {
 
       $scope.loginResult = User.login({
-          include: 'user',
+          include:    'user',
           rememberMe: $scope.credentials.rememberMe
         }, $scope.credentials,
-        function(user) {
-
-          console.log(user.id); // => acess token
-          console.log(user.ttl); // => 1209600 time to live
-          console.log(user.created); // => 2013-12-20T21:10:20.377Z
-          console.log(user.userId); // => 1
+        function (user) {
 
           var next = $location.nextAfterLogin || '/';
+          if ($scope.loginResult.user.currentRoles[0] == 'SUPERADMIN') {
+            $scope.loginResult.user.currentRoles.push('ADMIN');
+          }
+          $scope.$storage.user     = $scope.loginResult.user;
+          $rootScope.setupUser($scope.loginResult.user);
           $location.nextAfterLogin = null;
-          AppAuth.currentUser = $scope.loginResult.user;
-          CoreService.toastSuccess(gettextCatalog.getString('Logged in'),
-            gettextCatalog.getString('You are logged in!'));
+          CoreService.toastSuccess(gettextCatalog.getString('Logged in'), gettextCatalog.getString('You are logged in!'));
           if (next === '/login') {
             next = '/';
           }
           $location.path(next);
 
         },
-        function(res) {
+        function (res) {
           $scope.loginError = res.data.error;
         });
-
 
     };
 

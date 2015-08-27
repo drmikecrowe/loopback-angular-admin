@@ -10,7 +10,7 @@
  * @requires AppAuth
  **/
 angular.module('com.module.core')
-  .controller('RouteCtrl', function($q, $scope, $state, $location, AppAuth) {
+  .controller('RouteCtrl', function ($q, $scope, $state, $location, AppAuth) {
     if (!AppAuth.currentUser) {
       console.log('Redirect to login');
       $location.path('/login');

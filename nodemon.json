@@ -1,5 +1,6 @@
 {
   "ignore": [
+    ".tmp/*",
     ".git",
     "node_modules/**/node_modules"
   ],
@@ -8,8 +9,10 @@
     "common/",
     "server/"
   ],
+  "ext":    "js json",
   "env": {
-    "NODE_ENV": "development"
-  },
-  "ext": "js json"
+    "NODE_ENV": "development",
+    "ROLE":            "loopback",
+    "DEBUG":           "boot*,server:*,resolver:*",
+  }
 }

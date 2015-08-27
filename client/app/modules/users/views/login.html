@@ -1,25 +1,46 @@
-<div class="lockscreen" style="height: 100%">
-  <div class="form-box" id="login-box">
+<style>
+  body, .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background: #d2d6de;
+  }
+</style>
+<div class="login-box">
+  <div class="login-logo">
         <span class="pull-right image" style="margin: 15px 20px; float: left;">
             <img gravatar-src="credentials.email" class="img-circle" alt="User Image" gravatar-size="50">
         </span>
+  </div>
+  <div class="login-box-body">
 
-    <div class="header" style="text-align: left; padding-left: 25px;" translate>Sign In</div>
+    <p class="login-box-msg" translate>Sign In to Access your Account</p>
+
     <form role="form" ng-submit="login()" method="post">
-      <div class="body bg-gray">
+      <div class="">
         <div class="callout callout-danger" ng-if="loginError">
           <p>{{loginError.message | translate}}</p>
         </div>
         <auto:fields fields="schema" data="credentials" options="options"></auto:fields>
       </div>
       <div class="footer">
-        <button type="submit" class="btn bg-olive btn-block" translate>Sign in</button>
-        <a href='#/register' class="btn bg-yellow btn-block" translate>Or register</a>
+        <button id="signin" type="submit" class="btn bg-olive btn-block" translate>Sign in</button>
+        <a href='#/register' class="btn bg-yellow btn-block" translate>Register</a>
         <a ng-repeat="provider in authProviders" ng-hide="provider.link" ng-click="socialLogin(provider)"
            class="btn btn-block btn-{{provider.class}}">
           {{provider.provider | ucfirst}}
         </a>
       </div>
+      <a href="#">I forgot my password</a><br>
     </form>
+    <div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
+        using
+        Facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign
+        in
+        using Google+</a>
+    </div>
+    <!-- /.social-auth-links -->
   </div>
+
 </div>
+<!-- /.login-box-body -->

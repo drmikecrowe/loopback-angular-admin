@@ -1,29 +1,50 @@
-<header class="header">
-    <a class="logo" href="/">{{ getSetting('appName') }}</a>
-    <navbar></navbar>
+<header class="main-header">
+  <a class="logo" id="logo" href="/">{{ getSetting('appName') }}</a>
+  <navbar></navbar>
 </header>
-<div>
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-        <aside class="left-side sidebar-offcanvas">
-            <section class="sidebar">
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img gravatar-src="currentUser.email" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p><a href="" ui-sref="app.users.profile"> {{ 'Hello,' | translate }} {{currentUser.firstName || currentUser.profiles[0].profile.name.givenName}}</a></p>
-                        <p><small><a href="" ui-sref="app.users.profile">{{ currentUser.email }}</a></small></p>
-                    </div>
-                </div>
-                <ul class="sidebar-menu">
-                    <li ng-repeat="item in menuoptions" ui-sref-active="active">
-                        <a class="" href="" ui-sref="{{item.sref}}"><i class="fa fa-fw {{item.icon}}"></i> {{item.name | translate}}</a>
-                    </li>
-                </ul>
-            </section>
-        </aside>
-        <aside ui-view class="right-side at-view-fade-in at-view-fade-out">
 
-        </aside>
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img gravatar-src="currentUser.email" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p><a href="" ui-sref="app.users.profile"> {{ 'Hello,' | translate }} {{currentUser.firstName || currentUser.profiles[0].profile.name.givenName}}</a></p>
+        <p><small><a href="" ui-sref="app.users.profile">{{ currentUser.email }}</a></small></p>
+      </div>
     </div>
+    <ul class="sidebar-menu">
+      <li ng-repeat="item in menu" ui-sref-active="active" ng-class="{true: 'treeview'}[item.subMenu && item.subMenu.length > 0]">
+        <a class="" href="" ui-sref="{{item.sref}}" ng-if="!item.subMenu || item.subMenu.length == 0">
+          <i class="fa fa-fw {{item.icon}}"></i> <span>{{item.name | translate}}</span>
+        </a>
+        <a class="dropdown-toggle" href="#" ng-if="item.subMenu && item.subMenu.length > 0" data-toggle="dropdown" aria-expanded="false">
+          {{item.name | translate}} <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul ng-if="item.subMenu && item.subMenu.length > 0" class="treeview-menu">
+          <li ng-repeat="sitem in item.subMenu">
+            <a class="" href="" ui-sref="{{sitem.sref}}">
+              <i class="fa fa-fw {{sitem.icon}}"></i> <span>{{sitem.name | translate}}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+<div class="content-wrapper">
+  <aside ui-view class="at-view-fade-in at-view-fade-out">
+  </aside>
 </div>
+<footer class="main-footer">
+  <strong>
+    &copy; 2015
+  </strong>
+</footer>
+<script>
+  $.AdminLTE.layout.fix();
+</script>

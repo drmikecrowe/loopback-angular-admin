@@ -1,0 +1,8 @@
+<div class="box">
+  <div class="header no-padding no-more-tables cf" ng-controller="UserTableCtrl as mc">
+    <div ng-include src="'modules/core/views/elements/smart-table.html'"></div>
+  </div>
+  <div ng-if="showAdd" class="box-footer">
+    <a ui-sref="{{ inviteState }}" ui-sref-opts="{{ inviteStateParams }}" class="btn btn-primary btn-sm">{{ addPrompt }}</a>
+  </div>
+</div>

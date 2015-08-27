@@ -2,10 +2,9 @@
 
 var app = angular.module('com.module.core');
 
-app.factory('FormHelper', ['$state', 'CoreService', 'gettextCatalog', function(
-  $state, CoreService, gettextCatalog) {
+app.factory('FormHelper', ['$state', 'CoreService', 'gettextCatalog', function ($state, CoreService, gettextCatalog) {
 
-  return function(model) {
+  return function (model) {
 
     console.log('This is the model', model);
 
@@ -18,23 +17,23 @@ app.factory('FormHelper', ['$state', 'CoreService', 'gettextCatalog', function(
      * Initiates a delete action. Prompts the user form confirmation
      * before actioning the delete.
      */
-    this.delete = function(id) {
+    this.delete = function (id) {
 
       CoreService.confirm(gettextCatalog.getString('Are you sure?'),
         gettextCatalog.getString('Deleting this cannot be undone'),
-        function() {
-          this.model.deleteById(id, function() {
+        function () {
+          this.model.deleteById(id, function () {
             CoreService.toastSuccess(gettextCatalog.getString(
               'Item deleted'), gettextCatalog.getString(
               'Your item has been deleted!'));
             $state.reload();
-          }, function(err) {
+          }, function (err) {
             CoreService.toastError(gettextCatalog.getString(
               'Oops'), gettextCatalog.getString(
-              'Error deleting item: ') + err);
+                'Error deleting item: ') + err);
           });
         },
-        function() {
+        function () {
           return false;
         });
 
@@ -47,7 +46,7 @@ app.factory('FormHelper', ['$state', 'CoreService', 'gettextCatalog', function(
      * Cancel a form action. Sends the user back to the previous page they
      * were on
      */
-    this.cancel = function(defaultState) {
+    this.cancel = function (defaultState) {
       $state.go(defaultState);
     };
 

@@ -1,84 +1,84 @@
 {
-  "_meta": {
+  "_meta":          {
     "sources": [
       "../common/models",
       "./models",
       "../node_modules/loopback-component-passport/lib/models"
     ]
   },
-  "User": {
+  "User":           {
     "dataSource": "db",
-    "public": false
+    "public":     false
   },
-  "accessToken": {
+  "accessToken":    {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
   "userCredential": {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "userIdentity": {
+  "userIdentity":   {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "ACL": {
+  "ACL":            {
     "dataSource": "db",
-    "public": false
+    "public":     false
   },
-  "RoleMapping": {
+  "RoleMapping":    {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Role": {
+  "Role":           {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "AppModel": {
+  "AppModel":       {
     "dataSource": "db",
-    "public": false
+    "public":     false
   },
-  "Page": {
+  "Page":           {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Note": {
+  "Note":           {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Post": {
+  "Post":           {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Setting": {
+  "Setting":        {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Product": {
+  "Product":        {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Category": {
+  "Category":       {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "Event": {
+  "Event":          {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "AuthProvider": {
+  "AuthProvider":   {
     "dataSource": "db",
-    "public": true
+    "public":     true
   },
-  "user": {
+  "user":           {
     "dataSource": "db",
-    "public": true,
-    "acls": [
+    "public":     true,
+    "acls":       [
       {
         "principalType": "ROLE",
-        "principalId": "$everyone",
-        "permission": "ALLOW",
-        "property": "greet"
+        "principalId":   "$everyone",
+        "permission":    "ALLOW",
+        "property":      "greet"
       }
     ]
   }

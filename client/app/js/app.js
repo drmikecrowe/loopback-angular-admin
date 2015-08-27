@@ -8,70 +8,84 @@
  * Main module of the application.
  */
 angular.module('loopbackApp', [
-    'angular-loading-bar',
-    'angular.filter',
-    'angularBootstrapNavTree',
-    'angularFileUpload',
-    'btford.markdown',
-    'oitozero.ngSweetAlert',
-    'config',
-    'formly',
-    'lbServices',
-    'monospaced.elastic',
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ui.bootstrap',
-    'ui.codemirror',
-    'ui.gravatar',
-    'ui.grid',
-    'ui.router',
-    'toasty',
-    'autofields',
-    'gettext',
-    'com.module.core',
-    'com.module.about',
-    'com.module.events',
-    'com.module.files',
-    'com.module.notes',
-    'com.module.pages',
-    'com.module.posts',
-    'com.module.products',
-    'com.module.sandbox',
-    'com.module.settings',
-    'com.module.users'
-  ])
-  .run(function($rootScope, $cookies, gettextCatalog) {
+  'angular-loading-bar',
+  'angular.filter',
+  'angularBootstrapNavTree',
+  'angularFileUpload',
+  'btford.markdown',
+  'oitozero.ngSweetAlert',
+  'config',
+  'formly',
+  'formlyBootstrap',
+  'lbServices',
+  'monospaced.elastic',
+  'ngAnimate',
+  'ngCookies',
+  'ngResource',
+  'ngRoute',
+  'ngSanitize',
+  'ngStorage',
+  'ngTouch',
+  'ui.bootstrap',
+  'ui.codemirror',
+  'ui.gravatar',
+  'ui.grid',
+  'ui.router',
+  'toasty',
+  'autofields',
+  'gettext',
+  'smart-table',
+  'daterangepicker',
+  'cr.acl',
+  'ngLodash',
+  'toggle-switch',
+  'angularModalService',
+  'truncate',
+  'rzModule',
+  'picardy.fontawesome',
+  'ui.checkbox',
+  'xeditable',
+  'mgo-angular-wizard',
+  'com.module.core',
+  'com.module.about',
+  'com.module.events',
+  'com.module.files',
+  'com.module.notes',
+  'com.module.pages',
+  'com.module.posts',
+  'com.module.products',
+  'com.module.sandbox',
+  'com.module.settings',
+  'com.module.users'
+])
+  .run(function ($rootScope, $cookies, gettextCatalog, crAcl, editableOptions) {
 
     $rootScope.locales = {
 
-      'en': {
-        lang: 'en',
+      'en':    {
+        lang:    'en',
         country: 'US',
-        name: gettextCatalog.getString('English')
+        name:    gettextCatalog.getString('English')
       },
       'pt-BR': {
-        lang: 'pt_BR',
+        lang:    'pt_BR',
         country: 'BR',
-        name: gettextCatalog.getString('Portuguese Brazil')
+        name:    gettextCatalog.getString('Portuguese Brazil')
       },
-      'nl': {
-        lang: 'nl',
+      'nl':    {
+        lang:    'nl',
         country: 'NL',
-        name: gettextCatalog.getString('Dutch')
+        name:    gettextCatalog.getString('Dutch')
       },
-      'de': {
-        lang: 'de',
+      'de':    {
+        lang:    'de',
         country: 'DE',
-        name: gettextCatalog.getString('German')
+        name:    gettextCatalog.getString('German')
       },
-      'fr': {
-        lang: 'fr',
+      'fr':    {
+        lang:    'fr',
         country: 'FR',
-        name: gettextCatalog.getString('Français')
+        name:    gettextCatalog.getString('Français')
       }
     }
 
@@ -87,5 +101,12 @@ angular.module('loopbackApp', [
     }
 
     gettextCatalog.setCurrentLanguage($rootScope.locale.lang);
+    crAcl.setInheritanceRoles({
+      "ADMIN":      ["ROLE_USER"],
+      "SUPERADMIN": ["ROLE_USER", "ADMIN"],
+    });
+    crAcl.setRedirect('login');
+
+    editableOptions.theme = 'bs3';
 
   });

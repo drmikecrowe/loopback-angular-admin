@@ -10,4 +10,7 @@
  * the models exposed by the LoopBack server via the REST API.
  *
  */
-angular.module('com.module.core', ['gettext']);
+angular.module('com.module.core', [
+  'gettext', 'ui.router', 'formly', 'angular-loading-bar',
+  'lbServices', 'smart-table', 'ui.bootstrap'
+]);

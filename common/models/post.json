@@ -1,21 +1,21 @@
 {
-  "name": "Post",
-  "plural": "posts",
-  "base": "AppModel",
-  "properties": {
-    "title": {
-      "type": "string",
+  "name":        "Post",
+  "plural":      "posts",
+  "base":        "AppModel",
+  "properties":  {
+    "title":   {
+      "type":     "string",
       "required": true
     },
     "content": {
       "type": "string"
     },
-    "image": {
+    "image":   {
       "type": "string"
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": []
+  "relations":   {},
+  "acls":        [],
+  "methods":     []
 }

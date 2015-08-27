@@ -1,11 +1,11 @@
 'use strict';
 
-(function() {
+(function () {
   angular.module('com.module.core')
-    .directive('dateButton', function() {
+    .directive('dateButton', function () {
       var linkFn = function link(scope) {
         scope.options.open = false;
-        scope.switchOpen = function(event) {
+        scope.switchOpen   = function (event) {
           event.preventDefault();
           event.stopPropagation();
           scope.options.open = true;
@@ -15,11 +15,11 @@
 
       return {
         restrict: 'A',
-        scope: false,
-        compile: function(element) {
-          var span = angular.element('<span></span>');
+        scope:    false,
+        compile:  function (element) {
+          var span   = angular.element('<span></span>');
           var button = angular.element('<button></button>');
-          var i = angular.element('<i></i>');
+          var i      = angular.element('<i></i>');
 
           span.addClass('input-group-btn');
 

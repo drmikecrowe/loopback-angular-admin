@@ -7,8 +7,9 @@
  * @requires $rootScope
  **/
 angular.module('com.module.core')
-  .controller('HomeCtrl', function($scope, $rootScope) {
+  .controller('HomeCtrl', function ($scope, $rootScope, User, gettextCatalog, $route) {
 
+    $route.reload();
     $scope.count = {};
 
     $scope.boxes = $rootScope.dashboardBox;

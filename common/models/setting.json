@@ -1,10 +1,10 @@
 {
-  "name": "Setting",
-  "plural": "settings",
-  "base": "PersistedModel",
-  "properties": {
-    "key": {
-      "type": "string",
+  "name":        "Setting",
+  "plural":      "settings",
+  "base":        "PersistedModel",
+  "properties":  {
+    "key":   {
+      "type":     "string",
       "required": true
     },
     "value": {
@@ -12,7 +12,7 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": []
+  "relations":   {},
+  "acls":        [],
+  "methods":     []
 }

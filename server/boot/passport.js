@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   var bodyParser = require('body-parser');
-  var loopback = require('loopback');
+  var loopback   = require('loopback');
 
   // to support JSON-encoded bodies
   app.use(bodyParser.json());
@@ -19,9 +19,9 @@ module.exports = function(app) {
 
   app.use(loopback.cookieParser(app.get('cookieSecret')));
   app.use(loopback.session({
-    secret: app.get('cookieSecret'),
+    secret:            app.get('cookieSecret'),
     saveUninitialized: true,
-    resave: true
+    resave:            true
   }));
 
   var config = false;
@@ -39,8 +39,8 @@ module.exports = function(app) {
   if (config) {
     console.log('Configuring passport');
 
-    var AuthProvider = app.models.AuthProvider;
-    var loopbackPassport = require('loopback-component-passport');
+    var AuthProvider         = app.models.AuthProvider;
+    var loopbackPassport     = require('loopback-component-passport');
     var PassportConfigurator = loopbackPassport.PassportConfigurator;
     var passportConfigurator = new PassportConfigurator(app);
 
@@ -50,8 +50,8 @@ module.exports = function(app) {
 
     // Set up related models
     passportConfigurator.setupModels({
-      userModel: app.models.user,
-      userIdentityModel: app.models.userIdentity,
+      userModel:           app.models.user,
+      userIdentityModel:   app.models.userIdentity,
       userCredentialModel: app.models.userCredential
     });
 
@@ -67,14 +67,14 @@ module.exports = function(app) {
         }
 
         var entry = {
-          name: s,
-          link: c.link,
+          name:     s,
+          link:     c.link,
           authPath: c.authPath,
           provider: c.provider,
-          class: providerClass
+          class:    providerClass
         };
 
-        AuthProvider.create(entry, function(err, data) {
+        AuthProvider.create(entry, function (err, data) {
           if (err) {
             console.log(err);
           }
@@ -90,12 +90,12 @@ module.exports = function(app) {
 
   var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-  app.get('/auth/account', ensureLoggedIn('/'), function(req, res, next) {
+  app.get('/auth/account', ensureLoggedIn('/'), function (req, res, next) {
     console.log('Logged in', req.user)
     res.redirect('/#/app');
   });
 
-  app.get('/auth/current', function(req, res, next) {
+  app.get('/auth/current', function (req, res, next) {
     if (!req.isAuthenticated || !req.isAuthenticated()) {
       return res.status(200).json({});
     }
@@ -105,7 +105,7 @@ module.exports = function(app) {
     res.status(200).json(ret);
   });
 
-  app.get('/auth/logout', function(req, res, next) {
+  app.get('/auth/logout', function (req, res, next) {
     req.logout();
     res.redirect('/');
   });

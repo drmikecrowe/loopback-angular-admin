@@ -1,12 +1,12 @@
 'use strict';
 var app = angular.module('com.module.files');
 
-app.controller('UploadCtrl', function($scope, FileUploader, CoreService) {
+app.controller('UploadCtrl', function ($scope, FileUploader, CoreService) {
 
   // create a uploader with options
   var uploader = $scope.uploader = new FileUploader({
-    scope: $scope, // to automatically update the html. Default: $rootScope
-    url: CoreService.env.apiUrl + '/containers/files/upload',
+    scope:    $scope, // to automatically update the html. Default: $rootScope
+    url:      CoreService.env.apiUrl + '/containers/files/upload',
     formData: [{
       key: 'value'
     }]

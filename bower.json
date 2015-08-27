@@ -1,9 +1,17 @@
 {
   "name": "loopback",
   "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/vendor",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "angular": "~1.3.12",
-    "bootstrap": "~3.3.2",
+    "bootstrap": "=3.3.4",
     "angular-resource": "~1.3.12",
     "angular-cookies": "~1.3.12",
     "angular-route": "~1.3.12",
@@ -11,8 +19,8 @@
     "angular-animate": "~1.3.12",
     "angular-touch": "~1.3.12",
     "angular-ui-router": "~0.2.10",
-    "font-awesome": "~4.3.0",
-    "angular-formly": "~1.0.0",
+    "font-awesome": "~4.4.0",
+    "angular-formly": "~6.23.2",
     "angular-toasty": "~0.1.8",
     "angular-file-upload": "v1.1.5",
     "angular-filter": "~0.5.2",
@@ -34,7 +42,25 @@
     "angular-loading-bar": "~0.6.0",
     "Faker": "~2.1.2",
     "angular-mocks": "~1.3.12",
-    "angular-scenario": "~1.3.12"
+    "angular-scenario": "~1.3.12",
+    "slimScroll": "~1.3.3",
+    "fastclick": "~1.0.6",
+    "angular-daterangepicker": "~0.1.16",
+    "angular-smart-table": "~2.1.1",
+    "cr-acl": "~0.0.1",
+    "angular-moment": "~0.10.2",
+    "ngstorage": "~0.3.7",
+    "ng-lodash": "~0.2.3",
+    "angular-bootstrap-toggle-switch": "~0.5.5",
+    "lrInfiniteScroll": "~1.0.0",
+    "angular-truncate": "*",
+    "angular-modal-service": "~0.6.7",
+    "angularjs-slider": "~0.1.23",
+    "angular-fontawesome": "~0.4.0",
+    "angular-bootstrap-checkbox": "~0.3.1",
+    "angular-xeditable": "~0.1.9",
+    "angular-formly-templates-bootstrap": "~6.0.0",
+    "angular-wizard": "~0.5.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.3",
@@ -62,7 +88,7 @@
       ]
     }
   },
-  "appPath": "client/app/",
+  "appPath": "client/app",
   "resolutions": {
     "angular": "~1.3.12",
     "angular-animate": "~1.3.12",

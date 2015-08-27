@@ -1,20 +1,20 @@
 {
-  "name": "Category",
-  "plural": "categories",
-  "base": "PersistedModel",
-  "properties": {
+  "name":        "Category",
+  "plural":      "categories",
+  "base":        "PersistedModel",
+  "properties":  {
     "name": {
       "type": "string"
     }
   },
   "validations": [],
-  "relations": {
+  "relations":   {
     "products": {
-      "type": "hasMany",
-      "model": "Product",
+      "type":       "hasMany",
+      "model":      "Product",
       "foreignKey": "categoryId"
     }
   },
-  "acls": [],
-  "methods": []
+  "acls":        [],
+  "methods":     []
 }

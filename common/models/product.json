@@ -1,9 +1,9 @@
 {
-  "name": "Product",
-  "plural": "products",
-  "base": "PersistedModel",
-  "properties": {
-    "name": {
+  "name":        "Product",
+  "plural":      "products",
+  "base":        "PersistedModel",
+  "properties":  {
+    "name":       {
       "type": "string"
     },
     "categoryId": {
@@ -11,13 +11,13 @@
     }
   },
   "validations": [],
-  "relations": {
+  "relations":   {
     "category": {
-      "type": "belongsTo",
-      "model": "Category",
+      "type":       "belongsTo",
+      "model":      "Category",
       "foreignKey": "categoryId"
     }
   },
-  "acls": [],
-  "methods": []
+  "acls":        [],
+  "methods":     []
 }

@@ -2,16 +2,16 @@
 
 var Showdown = require('showdown');
 
-module.exports = function(Page) {
+module.exports = function (Page) {
 
   var converter = new Showdown.converter();
 
-  Page.html = function(id, cb) {
-    Page.findById(id, function(err, page) {
+  Page.html = function (id, cb) {
+    Page.findById(id, function (err, page) {
       if (err) {
         return cb(err);
       }
-      var result = page;
+      var result  = page;
       result.html = converter.makeHtml(page.content);
       cb(err, result);
     });
@@ -19,14 +19,14 @@ module.exports = function(Page) {
 
   Page.remoteMethod('html', {
     accepts: {
-      arg: 'id',
+      arg:  'id',
       type: 'string'
     },
     returns: {
-      arg: 'content',
+      arg:  'content',
       type: 'string'
     },
-    http: {
+    http:    {
       path: '/html',
       verb: 'get'
     }

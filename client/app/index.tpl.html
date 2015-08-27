@@ -10,13 +10,16 @@
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
   <!-- endbower -->
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/css/jquery.treetable.css"/>
   <!-- endbuild -->
   <!-- build:css styles/main.css -->
-  <!-- include: "type": "css", "files": "css/*.css" -->
+  <!-- include: "type": "css", "files": "css/**/*.css" -->
   <!-- include: "type": "css", "files": "modules/**/*.css" -->
   <!-- endbuild -->
 </head>
-<body class="{{getSetting('appTheme') }} {{ getSetting('appLayout') }} " ng-controller="MainCtrl">
+<body class="{{getSetting('appTheme') }} {{ getSetting('appLayout') }}" ng-controller="MainCtrl">
+<div class="wrapper">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->

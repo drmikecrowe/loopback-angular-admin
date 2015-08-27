@@ -1,29 +1,33 @@
 'use strict';
 angular.module('com.module.settings')
-  .config(function($stateProvider) {
+  .config(function ($stateProvider) {
     $stateProvider.state('app.settings', {
-        abstract: true,
-        url: '/settings',
-        templateUrl: 'modules/settings/views/main.html'
-      })
+      abstract:    true,
+      url:         '/settings',
+      templateUrl: 'modules/settings/views/main.html'
+    })
       .state('app.settings.list', {
-        url: '',
+        url:         '',
         templateUrl: 'modules/settings/views/list.html',
-        controller: 'SettingsCtrl'
+        controller:  'SettingsCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.settings.add', {
-        url: '/add',
+        url:         '/add',
         templateUrl: 'modules/settings/views/form.html',
-        controller: 'SettingsCtrl'
+        controller:  'SettingsCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.settings.edit', {
-        url: '/:id/edit',
+        url:         '/:id/edit',
         templateUrl: 'modules/settings/views/form.html',
-        controller: 'SettingsCtrl'
+        controller:  'SettingsCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.settings.view', {
-        url: '/:id',
+        url:         '/:id',
         templateUrl: 'modules/settings/views/view.html',
-        controller: 'SettingsCtrl'
+        controller:  'SettingsCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       });
   });

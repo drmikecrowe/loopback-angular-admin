@@ -1,13 +1,13 @@
 'use strict';
 var app = angular.module('com.module.sandbox');
-app.controller('SandboxIconsCtrl', function($scope) {
+app.controller('SandboxIconsCtrl', function ($scope) {
 
   $scope.filter = '';
 
   $scope.iconSets = {
     fontAwesome: {
       baseClass: 'fa fa-fw fa-3x',
-      icons: [
+      icons:     [
         'fa-adjust',
         'fa-adn',
         'fa-align-center',
@@ -603,9 +603,9 @@ app.controller('SandboxIconsCtrl', function($scope) {
         'fa-youtube-square'
       ]
     },
-    ionicons: {
+    ionicons:    {
       baseClass: 'icon fa-fw fa-3x',
-      icons: [
+      icons:     [
         'ion-alert',
         'ion-alert-circled',
         'ion-android-add',

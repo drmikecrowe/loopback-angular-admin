@@ -1,22 +1,22 @@
 'use strict';
 angular.module('com.module.files')
-  .controller('FilesCtrl', function($scope, $http, CoreService, gettextCatalog) {
+  .controller('FilesCtrl', function ($scope, $http, CoreService, gettextCatalog) {
 
-    $scope.load = function() {
+    $scope.load = function () {
       $http.get(CoreService.env.apiUrl + '/containers/files/files').success(
-        function(data) {
+        function (data) {
           console.log(data);
           $scope.files = data;
         });
     };
 
-    $scope.delete = function(index, id) {
+    $scope.delete = function (index, id) {
       CoreService.confirm(gettextCatalog.getString('Are you sure?'),
         gettextCatalog.getString('Deleting this cannot be undone'),
-        function() {
+        function () {
           $http.delete(CoreService.env.apiUrl +
             '/containers/files/files/' + encodeURIComponent(id)).success(
-            function(data, status, headers) {
+            function (data, status, headers) {
               console.log(data);
               console.log(status);
               console.log(headers);
@@ -26,12 +26,12 @@ angular.module('com.module.files')
                 'Your file is deleted!'));
             });
         },
-        function() {
+        function () {
           return false;
         });
     };
 
-    $scope.$on('uploadCompleted', function(event) {
+    $scope.$on('uploadCompleted', function (event) {
       console.log('uploadCompleted event received');
       console.log(event);
       $scope.load();

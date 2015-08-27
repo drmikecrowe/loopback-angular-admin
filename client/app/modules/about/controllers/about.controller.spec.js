@@ -2,7 +2,7 @@
 
 describe('Controller: AboutCtrl', function () {
   var AboutCtrl,
-    scope;
+      scope;
 
   // load the controller's module
   beforeEach(module('ui.router'));
@@ -16,7 +16,7 @@ describe('Controller: AboutCtrl', function () {
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
+    scope     = $rootScope.$new();
     AboutCtrl = $controller('AboutCtrl', {
       $scope: scope
     });

@@ -49,3 +49,35 @@
 .nav-tabs > li > a, .nav-tabs > li > a:hover {
   cursor: pointer;
 }
+
+#logo {
+  float: left;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0 10px;
+  width: 220px;
+  font-family: 'Kaushan Script', cursive;
+  font-weight: 500;
+  height: 50px;
+  display: block;
+}
+
+/* MWC Additions here */
+
+.navbar {
+  position: inherit;
+}
+
+.navbar-btn {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
+    line-height: 1em;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+}

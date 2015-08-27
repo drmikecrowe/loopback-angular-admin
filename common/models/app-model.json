@@ -1,8 +1,8 @@
 {
-  "name": "AppModel",
-  "base": "PersistedModel",
-  "properties": {
-    "created": {
+  "name":        "AppModel",
+  "base":        "PersistedModel",
+  "properties":  {
+    "created":  {
       "type": "date"
     },
     "modified": {
@@ -10,7 +10,7 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": []
+  "relations":   {},
+  "acls":        [],
+  "methods":     []
 }

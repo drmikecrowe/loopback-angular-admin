@@ -1,44 +1,44 @@
 {
-  "name": "Event",
-  "plural": "events",
-  "base": "PersistedModel",
-  "properties": {
-    "name": {
-      "type": "string",
+  "name":        "Event",
+  "plural":      "events",
+  "base":        "PersistedModel",
+  "properties":  {
+    "name":        {
+      "type":     "string",
       "required": true
     },
     "description": {
       "type": "string"
     },
-    "start_time": {
+    "start_time":  {
       "type": "date"
     },
-    "end_time": {
+    "end_time":    {
       "type": "date"
     },
-    "timezone": {
+    "timezone":    {
       "type": "String"
     },
-    "location": {
+    "location":    {
       "type": "String"
     },
-    "url": {
+    "url":         {
       "type": "String"
     },
-    "image": {
+    "image":       {
       "type": "String"
     },
-    "tickets": {
+    "tickets":     {
       "type": "String"
     },
-    "tags": {
+    "tags":        {
       "type": [
         "string"
       ]
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": []
+  "relations":   {},
+  "acls":        [],
+  "methods":     []
 }

@@ -1,129 +1,129 @@
 'use strict';
 angular.module('com.module.sandbox')
-  .controller('AutoFieldsCtrl', function($scope, $state, $log) {
+  .controller('AutoFieldsCtrl', function ($scope, $state, $log) {
 
     $scope.user = {
-      username: '',
-      email: 'test@test.com',
-      gender: null,
-      genderCheck: null,
-      bio: '',
-      website: '',
-      number: 1,
-      birthdate: new Date(),
-      password: '',
+      username:        '',
+      email:           'test@test.com',
+      gender:          null,
+      genderCheck:     null,
+      bio:             '',
+      website:         '',
+      number:          1,
+      birthdate:       new Date(),
+      password:        '',
       confirmPassword: '',
-      rememberMe: false
+      rememberMe:      false
     };
 
     $scope.schema = [{
       property: 'username',
-      type: 'text',
-      attr: {
+      type:     'text',
+      attr:     {
         ngMinlength: 4,
-        required: true
+        required:    true
       },
-      msgs: {
+      msgs:     {
         minlength: 'Needs to have at least 4 characters'
       }
     }, {
       property: 'email',
-      type: 'email',
-      help: 'Don\'t worry we won\'t spam your inbox',
-      attr: {
-        required: true,
+      type:     'email',
+      help:     'Don\'t worry we won\'t spam your inbox',
+      attr:     {
+        required:    true,
         ngMinlength: 4
       },
-      msgs: {
+      msgs:     {
         required: 'You need an email address',
-        email: 'Email address needs to be valid',
-        valid: 'Nice email address!'
+        email:    'Email address needs to be valid',
+        valid:    'Nice email address!'
       }
     }, {
       property: 'website',
-      type: 'url',
-      msgs: {
+      type:     'url',
+      msgs:     {
         url: 'You need a valid url'
       }
     }, {
       property: 'number',
-      label: 'Number between 1-10',
-      type: 'number',
-      attr: {
+      label:    'Number between 1-10',
+      type:     'number',
+      attr:     {
         min: 1,
         max: 10
       },
-      msgs: {
+      msgs:     {
         min: 'You need a number no less than 1',
         max: 'You need a number no greater than 10'
       },
       validate: false
     }, {
       property: 'birthdate',
-      type: 'date',
-      attr: {
+      type:     'date',
+      attr:     {
         required: true
       }
     }, {
       property: 'gender',
-      type: 'select',
-      list: 'key as value for (key,value) in genders',
-      attr: {
+      type:     'select',
+      list:     'key as value for (key,value) in genders',
+      attr:     {
         required: true
       }
     }, {
       property: 'genderCheck',
-      label: 'Are you really?',
-      type: 'select',
-      list: 'key as value for (key,value) in genderCheck',
-      attr: {
+      label:    'Are you really?',
+      type:     'select',
+      list:     'key as value for (key,value) in genderCheck',
+      attr:     {
         required: true,
-        ngShow: '$data.gender != null'
+        ngShow:   '$data.gender != null'
       }
     }, {
-      property: 'bio',
-      type: 'textarea',
-      rows: 5,
+      property:    'bio',
+      type:        'textarea',
+      rows:        5,
       placeholder: 'A bit about yourself...',
-      attr: {
+      attr:        {
         required: true
       }
     }, {
-      type: 'multiple',
-      fields: [{
+      type:    'multiple',
+      fields:  [{
         property: 'password',
-        type: 'password',
-        attr: {
-          required: true,
+        type:     'password',
+        attr:     {
+          required:    true,
           ngMinlength: 6
         }
       }, {
         property: 'confirmPassword',
-        label: 'Confirm Password',
-        type: 'password',
-        attr: {
+        label:    'Confirm Password',
+        type:     'password',
+        attr:     {
           confirmPassword: 'user.password',
-          required: true,
-          ngMinlength: 6
+          required:        true,
+          ngMinlength:     6
         },
-        msgs: {
+        msgs:     {
           match: 'Your passwords need to match'
         }
       }],
       columns: 6
     }, {
       property: 'rememberMe',
-      label: 'Stay signed in',
-      type: 'checkbox'
+      label:    'Stay signed in',
+      type:     'checkbox'
     }];
 
     $scope.options = {
       validation: {
-        enabled: true,
+        enabled:      true,
         showMessages: false
       },
-      layout: {
-        type: 'basic',
+      layout:     {
+        type:      'basic',
         labelSize: 3,
         inputSize: 9
       }
@@ -139,29 +139,28 @@ angular.module('com.module.sandbox')
       1: 'Yes'
     };
 
-    $scope.toggleValidation = function() {
+    $scope.toggleValidation = function () {
       $scope.options.validation.enabled = !$scope.options.validation.enabled;
     };
 
-    $scope.togglePopovers = function() {
+    $scope.togglePopovers = function () {
       $scope.options.validation.showMessages = !$scope.options.validation.showMessages;
     };
 
 
-
-    $scope.toggleHorizontal = function() {
+    $scope.toggleHorizontal = function () {
       $scope.options.layout.type = $scope.options.layout.type ===
-        'horizontal' ? 'basic' : 'horizontal';
+      'horizontal' ? 'basic' : 'horizontal';
     };
 
-    $scope.addField = function() {
+    $scope.addField = function () {
       $scope.schema.push({
         property: 'new' + (new Date().getTime()),
-        label: 'New Field'
+        label:    'New Field'
       });
     };
 
-    $scope.join = function() {
+    $scope.join = function () {
       if (!$scope.joinForm.$valid) {
         return;
       }
@@ -171,19 +170,19 @@ angular.module('com.module.sandbox')
     };
   })
   .directive('confirmPassword', [
-    function() {
+    function () {
       return {
         restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attrs, ngModel) {
-          var validate = function(viewValue) {
+        require:  'ngModel',
+        link:     function (scope, element, attrs, ngModel) {
+          var validate = function (viewValue) {
             var password = scope.$eval(attrs.confirmPassword);
             ngModel.$setValidity('match', ngModel.$isEmpty(viewValue) ||
               viewValue === password);
             return viewValue;
           };
           ngModel.$parsers.push(validate);
-          scope.$watch(attrs.confirmPassword, function() {
+          scope.$watch(attrs.confirmPassword, function () {
             validate(ngModel.$viewValue);
           });
         }

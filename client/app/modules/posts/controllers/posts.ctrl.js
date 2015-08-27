@@ -1,16 +1,16 @@
 'use strict';
 angular.module('com.module.posts')
-  .controller('PostsCtrl', function($scope, $state, $stateParams, CoreService,
-    FormHelper, gettextCatalog, Post, PostsService) {
+  .controller('PostsCtrl', function ($scope, $state, $stateParams, CoreService,
+                                     FormHelper, gettextCatalog, Post, PostsService) {
 
-    $scope.delete = function(id) {
-      PostsService.deletePost(id, function() {
+    $scope.delete = function (id) {
+      PostsService.deletePost(id, function () {
         $state.reload();
       });
     };
 
     this.formHelper = new FormHelper(Post);
-    $scope.cancel = function() {
+    $scope.cancel   = function () {
       console.log('Cancel');
       console.log(this.formHelper);
       //this.formHelper.cancel('app.posts.list');
@@ -21,7 +21,8 @@ angular.module('com.module.posts')
     if (postId) {
       $scope.post = Post.findById({
         id: postId
-      }, function() {}, function(err) {
+      }, function () {
+      }, function (err) {
         console.log(err);
       });
     } else {
@@ -29,34 +30,34 @@ angular.module('com.module.posts')
     }
 
     $scope.formFields = [{
-      key: 'title',
-      type: 'text',
-      label: gettextCatalog.getString('Title'),
+      key:      'title',
+      type:     'text',
+      label:    gettextCatalog.getString('Title'),
       required: true
     }, {
-      key: 'content',
-      type: 'textarea',
-      label: gettextCatalog.getString('Content'),
+      key:      'content',
+      type:     'textarea',
+      label:    gettextCatalog.getString('Content'),
       required: true
     }, {
-      key: 'image',
-      type: 'text',
-      label: gettextCatalog.getString('image'),
+      key:      'image',
+      type:     'text',
+      label:    gettextCatalog.getString('image'),
       required: true
     }];
 
     $scope.formOptions = {
       uniqueFormId: true,
-      hideSubmit: false,
-      submitCopy: gettextCatalog.getString('Save')
+      hideSubmit:   false,
+      submitCopy:   gettextCatalog.getString('Save')
     };
 
-    $scope.onSubmit = function() {
-      Post.upsert($scope.post, function() {
+    $scope.onSubmit = function () {
+      Post.upsert($scope.post, function () {
         CoreService.toastSuccess(gettextCatalog.getString('Post saved'),
           gettextCatalog.getString('Your post is safe with us!'));
         $state.go('^.list');
-      }, function(err) {
+      }, function (err) {
         console.log(err);
       });
     };

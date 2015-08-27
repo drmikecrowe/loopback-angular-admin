@@ -4,7 +4,7 @@ api:
     - "3000:3000"
   links:
     - mongodb
-  command: npm run dev
+  command: bash app-start-grunt.sh serve
   volumes:
     - .:/home/strongloop
   environment:
@@ -16,25 +16,8 @@ api:
     - INITDB=1
   restart: always
 
-angular:
-  image: strongloop/node
-  ports:
-    - "9000:9000"
-    - "35729:35729"
-  links:
-    - mongodb
-    - api
-  command: grunt serve
-  environment:
-    - NODE_ENV=development
-    - PATH=/home/strongloop/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-    - API_URL=http://0.0.0.0:3000/api
-  volumes:
-    - .:/home/strongloop
-  restart: always
-
 mongodb:
-  image: mongo:2.6.9
+  image: mongo:3
   ports:
     - "27017:27017"
   volumes:

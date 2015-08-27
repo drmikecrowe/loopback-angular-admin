@@ -1,54 +1,69 @@
 'use strict';
 angular.module('com.module.users')
-  .config(function($stateProvider) {
+  .config(function ($stateProvider) {
     $stateProvider
+      .state('reset-password', {
+        url:        '/reset-password',
+        template:   '<reset-password></reset-password>',
+        controller: 'ResetPasswordCtrl'
+      })
       .state('login', {
-        url: '/login',
-        template: '<login></login>',
-        controller: 'LoginCtrl'
+        url:        '/login',
+        template:   '<login></login>',
+        controller: 'LoginCtrl',
+        data:       {is_granted: ['ROLE_GUEST']}
       })
       .state('register', {
-        url: '/register',
-        template: '<register></register>',
-        controller: 'RegisterCtrl'
+        url:        '/register',
+        template:   '<register></register>',
+        controller: 'RegisterCtrl',
+        data:       {is_granted: ['ROLE_USER']}
       })
       .state('app.users', {
-        abstract: true,
-        url: '/users',
+        abstract:    true,
+        url:         '/users',
         templateUrl: 'modules/users/views/main.html'
       })
       .state('app.users.profile', {
-        url: '/profile',
+        url:         '/profile',
         templateUrl: 'modules/users/views/profile.html',
-        controller: 'ProfileCtrl'
+        controller:  'ProfileCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.users.list', {
-        url: '',
+        url:         '',
         templateUrl: 'modules/users/views/list.html',
-        controller: 'UsersCtrl',
-        authenticate: true
+        controller:  'UsersCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.users.add', {
-        url: '/add',
+        url:         '/add',
         templateUrl: 'modules/users/views/form.html',
-        controller: 'UsersCtrl',
-        authenticate: true
+        controller:  'UsersCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.users.edit', {
-        url: '/edit/:id',
+        url:         '/edit/:id',
         templateUrl: 'modules/users/views/form.html',
-        controller: 'UsersCtrl',
-        authenticate: true
+        controller:  'UsersCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.users.view', {
-        url: '/view/:id',
+        url:         '/view/:id',
         templateUrl: 'modules/users/views/view.html',
-        controller: 'UsersCtrl',
-        authenticate: false
+        controller:  'UsersCtrl',
+        data:        {is_granted: ['ROLE_USER']}
       })
       .state('app.users.delete', {
-        url: '/delete/:id',
+        url:        '/delete/:id',
         controller: 'UsersCtrl',
-        authenticate: true
-      });
+        data:       {is_granted: ['ROLE_USER']}
+      })
+      .state('app.users.table', {
+        url:         '/:filter',
+        templateUrl: 'modules/users/views/table.html',
+        controller:  'UserTableCtrl',
+        data:        {is_granted: ['ROLE_USER']}
+      })
+    ;
   });

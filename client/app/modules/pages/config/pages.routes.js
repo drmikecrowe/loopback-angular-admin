@@ -1,29 +1,29 @@
 'use strict';
 angular.module('com.module.pages')
-  .config(function($stateProvider) {
+  .config(function ($stateProvider) {
     $stateProvider.state('app.pages', {
-        abstract: true,
-        url: '/pages',
-        templateUrl: 'modules/pages/views/main.html'
-      })
+      abstract:    true,
+      url:         '/pages',
+      templateUrl: 'modules/pages/views/main.html'
+    })
       .state('app.pages.list', {
-        url: '',
+        url:         '',
         templateUrl: 'modules/pages/views/list.html',
-        controller: 'PagesCtrl'
+        controller:  'PagesCtrl'
       })
       .state('app.pages.add', {
-        url: '/add',
+        url:         '/add',
         templateUrl: 'modules/pages/views/form.html',
-        controller: 'PagesCtrl'
+        controller:  'PagesCtrl'
       })
       .state('app.pages.edit', {
-        url: '/:id/edit',
+        url:         '/:id/edit',
         templateUrl: 'modules/pages/views/form.html',
-        controller: 'PagesCtrl'
+        controller:  'PagesCtrl'
       })
       .state('app.pages.view', {
-        url: '/:id',
+        url:         '/:id',
         templateUrl: 'modules/pages/views/view.html',
-        controller: 'PagesCtrl'
+        controller:  'PagesCtrl'
       });
   });

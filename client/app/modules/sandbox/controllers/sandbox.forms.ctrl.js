@@ -1,45 +1,45 @@
 'use strict';
 angular.module('com.module.sandbox')
-  .controller('SandboxFormsCtrl', function($scope, CoreService) {
+  .controller('SandboxFormsCtrl', function ($scope, CoreService) {
 
     $scope.formData = {};
 
     $scope.formFields = [{
-      key: 'name',
-      type: 'text',
-      label: 'Name',
+      key:      'name',
+      type:     'text',
+      label:    'Name',
       required: true
     }, {
-      key: 'description',
-      type: 'text',
-      label: 'Description',
+      key:      'description',
+      type:     'text',
+      label:    'Description',
       required: true
     }, {
-      key: 'startDate',
+      key:      'startDate',
       required: true,
-      label: 'Start Date',
-      type: 'date',
-      format: 'dd/MM/yyyy'
+      label:    'Start Date',
+      type:     'date',
+      format:   'dd/MM/yyyy'
     }, {
-      key: 'startTime',
-      required: true,
-      label: 'Start Time',
-      type: 'time',
-      hstep: 1,
-      mstep: 5,
+      key:        'startTime',
+      required:   true,
+      label:      'Start Time',
+      type:       'time',
+      hstep:      1,
+      mstep:      5,
       ismeridian: true
     }, {
-      key: 'endDate',
-      label: 'End',
-      type: 'date',
+      key:    'endDate',
+      label:  'End',
+      type:   'date',
       format: 'dd/MM/yyyy'
     }, {
-      key: 'endTime',
-      required: true,
-      label: 'End Time',
-      type: 'time',
-      hstep: 1,
-      mstep: 5,
+      key:        'endTime',
+      required:   true,
+      label:      'End Time',
+      type:       'time',
+      hstep:      1,
+      mstep:      5,
       ismeridian: true
     }];
 
@@ -48,8 +48,8 @@ angular.module('com.module.sandbox')
       submitCopy: 'Submit'
     };
 
-    $scope.onSubmit = function() {
+    $scope.onSubmit = function () {
       CoreService.alertSuccess('Good job!', 'Well done, ' + $scope.formData
-        .name);
+          .name);
     };
   });

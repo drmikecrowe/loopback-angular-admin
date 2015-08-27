@@ -1,3 +1,3 @@
-module.exports = function(AuthProvider) {
+module.exports = function (AuthProvider) {
 
 };
